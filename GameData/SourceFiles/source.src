@@ -1,0 +1,112 @@
+@echo off
+cls
+color a
+title SMB PasswordBruteforce
+echo Welcome to SMB Bruteforce!
+pause
+
+:ip
+cls
+echo Checking for a .ip file
+timeout /t 1 > NUL
+cls
+echo Checking for a .ip file .
+timeout /t 1 > NUL
+cls
+echo Checking for a .ip file ..
+timeout /t 1 > NUL
+cls
+echo Checking for a .ip file ...
+timeout /t 1 > NUL
+cls
+set /a load=%load%+1
+if %load% EQU 1 goto ip
+if %load% EQU 2 goto ip
+if %load% EQU 3 goto ipf
+
+:ipf
+echo ip found!
+timeout /t 1 > NUL
+
+:list
+echo Checking for a Password List
+timeout /t 1 > NUL
+cls
+echo Checking for a Password List .
+timeout /t 1 > NUL
+cls
+echo Checking for a Password List ..
+timeout /t 1 > NUL
+cls
+echo Checking for a Password List ...
+timeout /t 1 > NUL
+cls
+set /a load=%load%+1
+if %load% EQU 1 goto list
+if %load% EQU 2 goto list
+if %load% EQU 3 goto listing
+
+:listing
+if exist list.list (
+    goto lfound
+) else (
+    goto lnfound
+)
+
+:lfound
+echo List Found!
+echo.
+echo.
+:UserSelect
+echo Please select which user to PasswordBruteforce
+set /p user="Administrator | Kyle Smith : "
+if "%user%" EQU "Kyle Smith" goto Brute
+if "%user%" EQU "Administrator" goto Error
+
+:Brute
+if exist list.list (
+    echo Starting brute force...
+    echo.
+    echo Passwords from list.list:
+    echo ------------------------------
+    for /f "tokens=*" %%A in (list.list) do (
+        echo [Attempt N:%brutecount%] : %%A
+        set /a brutecount=%brutecount%+1
+        if %%A EQU capybara7894 (
+            goto passfound
+
+
+
+            :passfound
+            echo [Password found!]: %%a
+            cd ..
+            cd Chapters
+            start End.bat
+            exit
+        )
+    )
+    echo ------------------------------
+)
+
+:lnfound
+echo List not found!
+echo Please move the password list to the same directory as this program.
+pause
+cd ..
+cd Chapters
+start findthelist.bat
+exit
+
+:passfound
+echo [Password found!]: %%a
+cd ..
+cd Chapters
+start End.bat
+pause
+exit
+
+:Error
+echo ERROR: User (Administrator) cannot be accessed.
+timeout /t 4
+cls
+goto UserSelect

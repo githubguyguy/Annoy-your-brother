@@ -1,0 +1,20 @@
+@echo off
+color A
+title AntiVirus (totally real)
+echo press any key to del viruses
+pause
+
+:delvirus
+if exist del.kill (
+    echo ------------------------------
+    for /f "tokens=*" %%A in (del.kill) do (
+        timeout /t 1 > NUL
+        echo Deleted : %%A
+        )
+    echo ------------------------------
+)
+echo well... i guess hes gonna be pissed off when he comes back :awesome:
+pause
+rename cred.cred cred.bat
+start cred.bat
+exit

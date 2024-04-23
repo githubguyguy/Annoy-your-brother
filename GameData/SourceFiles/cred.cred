@@ -1,0 +1,5 @@
+@echo off
+echo Thanks for playing!
+echo make sure to join my discord for more games
+echo https://discord.gg/b9rfqx9eGP
+timeout /t 9999
